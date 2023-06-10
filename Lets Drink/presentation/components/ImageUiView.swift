@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ImageUiView: View {
-    let url: URL
+    let url: URL?
     let size: CGSize?
     
     var body: some View {
@@ -25,23 +25,29 @@ struct ImageUiView: View {
         AsyncImage(url: url) { phase in
             switch phase {
             case .empty:
-                Image(systemName: "photo")
-                    .foregroundColor(.gray)
+                Image(systemName: "xmark.octagon")
+                    .foregroundColor(.red)
                     .frame(width: size.width, height: size.height)
+                    .scaledToFit()
+                    .aspectRatio(contentMode: .fit) // Alterado para .fill
             case .success(let image):
                 image
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
                     .frame(width: size.width, height: size.height)
+                    .scaledToFit()
+                    .cornerRadius(8)
             case .failure:
                 Image(systemName: "xmark.octagon")
                     .foregroundColor(.red)
                     .frame(width: size.width, height: size.height)
+                    .scaledToFit()
+                    .aspectRatio(contentMode: .fit) // Alterado para .fill
             @unknown default:
                 fatalError()
             }
         }
     }
+
 }
 
 struct ImageUiView_Previews: PreviewProvider {

@@ -7,30 +7,28 @@
 
 import SwiftUI
 
-struct Drink: Identifiable {
-    let id = UUID()
-    let name: String
-    let imageURL: URL
-}
-
 struct HomeView: View {
     @State private var isFavorite = false
-    let drinks = [
-        Drink(name: "Cerveja", imageURL: URL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyfmo_phepH-dn3JLKehmn8uY2TkQoM_VywyjFW_2kzRSQ_McBtAVnDjmaqQT8eSQiGUc&usqp=CAU")!),
-        Drink(name: "Cerveja", imageURL: URL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyfmo_phepH-dn3JLKehmn8uY2TkQoM_VywyjFW_2kzRSQ_McBtAVnDjmaqQT8eSQiGUc&usqp=CAU")!),
-        Drink(name: "Cerveja", imageURL: URL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyfmo_phepH-dn3JLKehmn8uY2TkQoM_VywyjFW_2kzRSQ_McBtAVnDjmaqQT8eSQiGUc&usqp=CAU")!),
-        Drink(name: "Cerveja", imageURL: URL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyfmo_phepH-dn3JLKehmn8uY2TkQoM_VywyjFW_2kzRSQ_McBtAVnDjmaqQT8eSQiGUc&usqp=CAU")!)
-    ]
-    
+   let drinks = [
+    Drink(id: 7,
+                       name: "BEBIDA ALCOOLICA LIMAO XOTA",
+                       description: "DQWDQWD",
+                       image: "DQWFQ",
+                       garnish: "FQFQ",
+                       category_id: 2,
+                       created_at: "2023-06-07T02:25:29.194Z",
+                       updated_at: "2023-06-07T02:25:29.194Z",
+                       url: "https://rails-production-72ec.up.railway.app/drinks/7.json")
+   ]
     var body: some View {
         TabView {
-            DrinksUiView(drinks: drinks)
+            CategoryScreen(viewModel: CategoryViewModel(apiClient: ApiClient.shared))
                 .tabItem {
-                Image(systemName: "mappin.circle.fill")
-                Text("Drinks")
-            }
+                    Image(systemName: "mappin.circle.fill")
+                    Text("Categorias")
+                }
             
-            FavoriteUiView(drinks: drinks, liked: $isFavorite).tabItem {
+            FavoriteScreen(drinks: drinks, liked: $isFavorite).tabItem {
                 Image(systemName: "mappin.circle.fill")
                 Text("Favoritos")
             }

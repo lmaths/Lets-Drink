@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FavoriteUiView: View {
+struct FavoriteScreen: View {
     let drinks: [Drink]
     @Binding var liked: Bool
 
@@ -17,7 +17,7 @@ struct FavoriteUiView: View {
             VStack(alignment: .leading) {
                 ForEach(drinks) { drink in
                     HStack(spacing: 24) {
-                        DrinkItemUiView(title: drink.name, imageURL: drink.imageURL)
+                        DrinkItemUiView(title: drink.name, imageURL: drink.image, description: drink.description)
                         Spacer()
                         HeartButtonUIView(isLiked: $liked).padding(.trailing, 24)
                         
@@ -27,6 +27,7 @@ struct FavoriteUiView: View {
             }
             }.navigationTitle("Favoritos")
         }
+
     
     }
 }
