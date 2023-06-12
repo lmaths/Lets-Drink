@@ -13,7 +13,6 @@ struct DrinkScreen: View {
     var categorieId: Int
     var categorieName: String
     @State private var showAnimation = true
-    @State private var viewId = UUID()
     var body: some View {
         ZStack {
             if showAnimation {
@@ -22,31 +21,31 @@ struct DrinkScreen: View {
                         showAnimation = false
                     })
                 }
-                } else {
-                    ScrollView {
-                        VStack() {
-                            ForEach(viewModel.drinks) { drink in
-                                DrinkItemUiView(title: drink.name, imageURL: drink.image, description: drink.description)
-                                    .onTapGesture {
-                                        
-                                    }
-                                Divider()
-                            }
+            } else {
+                ScrollView {
+                    VStack() {
+                        ForEach(viewModel.drinks) { drink in
+                            DrinkItemUiView(title: drink.name, imageURL: drink.image, description: drink.description)
+                                .onTapGesture {
+                                    
+                                }
+                            Divider()
                         }
                     }
-                    .navigationBarTitle(categorieName)
-                    .navigationBarBackButtonHidden(false)
                 }
+                .navigationBarTitle(categorieName)
+                .navigationBarBackButtonHidden(false)
             }
-                .onAppear {
-                    viewModel.fetchDrinks(categorieId: categorieId)
-                }
+        }
+        .onAppear {
+            viewModel.fetchDrinks(categorieId: categorieId)
         }
     }
-    struct DrinksUiView_Previews: PreviewProvider {
-        static var previews: some View {
-            let viewModel = DrinkViewModel(apiClient: ApiClient.shared)
-            DrinkScreen(viewModel: viewModel, categorieId: 1, categorieName: "dqwd")
-        }
+}
+struct DrinksUiView_Previews: PreviewProvider {
+    static var previews: some View {
+        let viewModel = DrinkViewModel(apiClient: ApiClient.shared)
+        DrinkScreen(viewModel: viewModel, categorieId: 1, categorieName: "dqwd")
     }
-    
+}
+
