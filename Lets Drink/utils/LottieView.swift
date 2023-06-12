@@ -8,17 +8,38 @@ import SwiftUI
 import Lottie
 
 struct LottieView: UIViewRepresentable {
-    typealias UIViewType = UIView
     
+    typealias UIViewType = UIView
+    var isLoading: Bool
     var animationName: String
-    var loopMode: LottieLoopMode = .loop
+    var startFrame: CGFloat = 0.0
+    var endFrame: CGFloat = 0.0
+    var animationCompletionHandler: (() -> Void)? = {}
     
     func makeUIView(context: UIViewRepresentableContext<LottieView>) -> UIView {
         let view = UIView()
-        let animationView = LottieAnimationView()
-        animationView.animation = LottieAnimationView(animationName)
-        animationView.loopMode = loopMode
-        animationView.play()
+        let animationView = AnimationView()
+        animationView.backgroundBehavior = .pauseAndRestore
+        let animation = Animation.named(animationName)
+        let animationCompletionHandler: (() -> Void)?
+        
+        animationView.animation = animation
+        
+        if isLoading {
+            let animationHeight = animation?.size.height ?? 100.0
+            animationView.loopMode = .loop
+            let startProgress = startFrame / animationHeight
+            let endProgress = endFrame / animationHeight
+            animationView.play(fromProgress: startProgress, toProgress: endProgress)
+        } else {
+            animationView.loopMode = .playOnce
+            animationView.play { finished in
+                if finished {
+                    self.animationCompletionHandler?()
+                }
+            }
+        }
+        
         animationView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(animationView)
         
@@ -30,6 +51,8 @@ struct LottieView: UIViewRepresentable {
         ])
         
         return view
+        
+        
     }
     
     func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<LottieView>) {
