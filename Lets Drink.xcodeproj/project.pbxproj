@@ -22,6 +22,7 @@
 		146BE86A2A2594D400CEAFEE /* DrinkScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146BE8692A2594D400CEAFEE /* DrinkScreen.swift */; };
 		146BE86C2A25987000CEAFEE /* HeartButtonUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146BE86B2A25987000CEAFEE /* HeartButtonUIView.swift */; };
 		146BE86E2A259BA700CEAFEE /* FavoriteScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146BE86D2A259BA700CEAFEE /* FavoriteScreen.swift */; };
+		147A48222A40036D003024F4 /* DrinkDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A48212A40036D003024F4 /* DrinkDetailsViewModel.swift */; };
 		1484E3D82A341C1C00F0CBD2 /* ic_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 1484E3D72A341C1C00F0CBD2 /* ic_loading.json */; };
 		14B88D392A340CE700A2C728 /* LoadingItemUiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B88D382A340CE700A2C728 /* LoadingItemUiView.swift */; };
 		14B88D3D2A34193D00A2C728 /* DrinkDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B88D3C2A34193D00A2C728 /* DrinkDetailsScreen.swift */; };
@@ -74,6 +75,7 @@
 		146BE8692A2594D400CEAFEE /* DrinkScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkScreen.swift; sourceTree = "<group>"; };
 		146BE86B2A25987000CEAFEE /* HeartButtonUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButtonUIView.swift; sourceTree = "<group>"; };
 		146BE86D2A259BA700CEAFEE /* FavoriteScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteScreen.swift; sourceTree = "<group>"; };
+		147A48212A40036D003024F4 /* DrinkDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkDetailsViewModel.swift; sourceTree = "<group>"; };
 		1484E3D72A341C1C00F0CBD2 /* ic_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = ic_loading.json; path = ../../../../../Downloads/ic_loading.json; sourceTree = "<group>"; };
 		14B88D382A340CE700A2C728 /* LoadingItemUiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingItemUiView.swift; sourceTree = "<group>"; };
 		14B88D3C2A34193D00A2C728 /* DrinkDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkDetailsScreen.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				14BCC6072A3136C10083AABF /* DrinkViewModel.swift */,
 				14BCC6092A31372C0083AABF /* DrinkManager.swift */,
 				14BCC6102A315CD50083AABF /* CategoryViewModel.swift */,
+				147A48212A40036D003024F4 /* DrinkDetailsViewModel.swift */,
 			);
 			path = viewModels;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				1440B8022A341C8C00968073 /* LottieView.swift in Sources */,
 				146BE86E2A259BA700CEAFEE /* FavoriteScreen.swift in Sources */,
 				14BCC60A2A31372C0083AABF /* DrinkManager.swift in Sources */,
+				147A48222A40036D003024F4 /* DrinkDetailsViewModel.swift in Sources */,
 				14BCC6042A31359D0083AABF /* Drink.swift in Sources */,
 				14BCC6132A315DB80083AABF /* CategoryUiView.swift in Sources */,
 				146BE86C2A25987000CEAFEE /* HeartButtonUIView.swift in Sources */,

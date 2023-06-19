@@ -14,6 +14,7 @@ struct LottieView: UIViewRepresentable {
     var animationName: String
     var startFrame: CGFloat = 0.0
     var endFrame: CGFloat = 0.0
+    var loadingTitle: String
     var animationCompletionHandler: (() -> Void)? = {}
     
     func makeUIView(context: UIViewRepresentableContext<LottieView>) -> UIView {
@@ -24,6 +25,13 @@ struct LottieView: UIViewRepresentable {
         let animationCompletionHandler: (() -> Void)?
         
         animationView.animation = animation
+        let label = UILabel()
+        label.text = loadingTitle
+        label.textColor = .black
+        label.font = UIFont.preferredFont(forTextStyle: .title1	)
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(label)
         
         if isLoading {
             let animationHeight = animation?.size.height ?? 100.0
@@ -35,7 +43,11 @@ struct LottieView: UIViewRepresentable {
             animationView.loopMode = .playOnce
             animationView.play { finished in
                 if finished {
-                    self.animationCompletionHandler?()
+                    label.text = "Sucesso!"
+                    label.textColor = UIColor(red: 0.0, green: 0.5, blue: 0.0, alpha: 1.0)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        self.animationCompletionHandler?()
+                    }
                 }
             }
         }
@@ -44,10 +56,14 @@ struct LottieView: UIViewRepresentable {
         view.addSubview(animationView)
         
         NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -48),
+            label.topAnchor.constraint(equalTo: view.topAnchor),
+            
             animationView.widthAnchor.constraint(equalTo: view.widthAnchor),
             animationView.heightAnchor.constraint(equalTo: view.heightAnchor),
             animationView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            animationView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            animationView.topAnchor.constraint(equalTo: label.bottomAnchor)
         ])
         
         return view
@@ -56,7 +72,7 @@ struct LottieView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<LottieView>) {
-        // Update the view if needed
+        
     }
 }
 

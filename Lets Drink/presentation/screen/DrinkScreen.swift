@@ -13,11 +13,12 @@ struct DrinkScreen: View {
     var categorieId: Int
     var categorieName: String
     @State private var showAnimation = true
+    
     var body: some View {
         ZStack {
             if showAnimation {
                 HStack(alignment: .bottom) {
-                    LottieView(isLoading: viewModel.isLoading, animationName: "ic_loading", startFrame: 100, endFrame: 350, animationCompletionHandler: {
+                    LottieView(isLoading: viewModel.isLoading, animationName: "ic_loading", startFrame: 100, endFrame: 350, loadingTitle: "Estamos buscando pelos drinks...", animationCompletionHandler: {
                         showAnimation = false
                     })
                 }
@@ -25,10 +26,9 @@ struct DrinkScreen: View {
                 ScrollView {
                     VStack() {
                         ForEach(viewModel.drinks) { drink in
-                            DrinkItemUiView(title: drink.name, imageURL: drink.image, description: drink.description)
-                                .onTapGesture {
-                                    
-                                }
+                            NavigationLink(destination: DrinkDetailsScreen(drinkId: drink.id)) {
+                                DrinkItemUiView(title: drink.name, imageURL: drink.image, description: drink.description)
+                            }
                             Divider()
                         }
                     }
