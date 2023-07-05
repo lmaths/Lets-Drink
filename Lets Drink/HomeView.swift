@@ -15,10 +15,7 @@ struct HomeView: View {
                        description: "DQWDQWD",
                        image: "DQWFQ",
                        garnish: "FQFQ",
-                       category_id: 2,
-                       created_at: "2023-06-07T02:25:29.194Z",
-                       updated_at: "2023-06-07T02:25:29.194Z",
-                       url: "https://rails-production-72ec.up.railway.app/drinks/7.json")
+                       category_id: 2)
    ]
     var body: some View {
         TabView {

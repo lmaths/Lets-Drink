@@ -27,6 +27,7 @@ class CategoryViewModel: ObservableObject {
                     print(categories)
                 }
             case .failure(let error):
+                debugPrint(error)
                 print("Erro ao buscar as categorias \(error.localizedDescription)")
             }
         }

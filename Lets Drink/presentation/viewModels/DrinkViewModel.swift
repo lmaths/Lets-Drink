@@ -29,6 +29,7 @@ class DrinkViewModel: ObservableObject {
                   
                 }
             case .failure(let error):
+                debugPrint(error)
                 print("Erro ao buscar os drinks \(error.localizedDescription)")
             }
         }

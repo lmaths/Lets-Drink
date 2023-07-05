@@ -27,17 +27,23 @@ struct DrinkDetailsScreen: View {
                     if let details = viewModel.drinkDetails {
                         VStack(alignment: .leading, spacing: 16) {
                             Group {
-                                ImageUiView(url: URL(string: details.image), size: CGSize(width: 80, height: 80))
-                                    .cornerRadius(8)
-                                    .padding(.leading, 24)
+                                if let image = details.image {
+                                    ImageUiView(url: URL(string: image), size: CGSize(width: 80, height: 80))
+                                        .cornerRadius(8)
+                                        .padding(.leading, 24)
+                                }
+                                
                                 
                                 Text(details.name)
                                     .font(.title)
                                     .fontWeight(.bold)
                                 
-                                Text(details.description)
-                                    .font(.body)
-                                    .foregroundColor(.secondary)
+                                if let description = details.description {
+                                    Text(description)
+                                        .font(.body)
+                                        .foregroundColor(.secondary)
+                                    
+                                }
                                 
                                 Divider()
                                 
@@ -45,15 +51,17 @@ struct DrinkDetailsScreen: View {
                                     .font(.title2)
                                     .fontWeight(.bold)
                             }
-                           
                             
-                            ForEach(details.ingredients) { ingredient in
+                            
+                            ForEach(details.ingredients) { ingredientMeasure in
                                 HStack(spacing: 16) {
-                                    ImageUiView(url: URL(string: ingredient.image), size: CGSize(width: 80, height: 80))
-                                        .cornerRadius(8)
-                                        .padding(.leading, 24)
+                                    if let image = ingredientMeasure.ingredient.image {
+                                        ImageUiView(url: URL(string: image), size: CGSize(width: 80, height: 80))
+                                            .cornerRadius(8)
+                                            .padding(.leading, 24)
+                                    }
                                     
-                                    Text(ingredient.name)
+                                    Text(ingredientMeasure.ingredient.name)
                                         .font(.body)
                                     
                                     Spacer()
@@ -71,8 +79,11 @@ struct DrinkDetailsScreen: View {
                             Text("Guarnição")
                                 .font(.title2)
                                 .fontWeight(.bold)
-                            Text(details.garnish)
-                                .font(.body)
+                            if let garnish = details.garnish {
+                                Text(garnish)
+                                    .font(.body)
+                            }
+                          
                             Spacer()
                         }
                         .padding()
